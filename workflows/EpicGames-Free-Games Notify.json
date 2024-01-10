@@ -1,0 +1,83 @@
+{
+  "active": true,
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Line",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-09T19:14:45.886Z",
+  "id": "USgNJr6GNPW7GA4x",
+  "meta": null,
+  "name": "EpicGames-Free-Games Notify",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "q": "Epic Games free games needs an action performed"
+        }
+      },
+      "id": "19e35154-12c6-4a12-997a-44e84079280a",
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        560,
+        280
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LICopN0AM8jfbuqq",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "message": "Epicgames Free Games 有新通知！應該是成功了啦",
+        "additionalFields": {}
+      },
+      "id": "4a9cfa85-6a9e-45eb-8231-f7b191f56867",
+      "name": "Line",
+      "type": "n8n-nodes-base.line",
+      "typeVersion": 1,
+      "position": [
+        780,
+        280
+      ],
+      "credentials": {
+        "lineNotifyOAuth2Api": {
+          "id": "LlC6V8SYTrJdeynY",
+          "name": "Line Notify account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Gmail Trigger": {
+      "lastTimeChecked": 1704902357
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-10T15:59:22.480Z",
+  "versionId": "08c04601-820b-46fb-b693-5fa272aaf5b8"
+}
