@@ -48,7 +48,7 @@
     },
     {
       "parameters": {
-        "message": "Epicgames Free Games 有新通知！應該是成功了啦",
+        "message": "Epicgames Free Games 自動化！/n 執行成功！",
         "additionalFields": {}
       },
       "id": "4a9cfa85-6a9e-45eb-8231-f7b191f56867",
@@ -73,7 +73,7 @@
   },
   "staticData": {
     "node:Gmail Trigger": {
-      "lastTimeChecked": 1704931267,
+      "lastTimeChecked": 1704983048,
       "possibleDuplicates": [
         "18cf5d313d6b7b5a"
       ]
@@ -81,6 +81,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-01-11T00:02:18.844Z",
-  "versionId": "08c04601-820b-46fb-b693-5fa272aaf5b8"
+  "updatedAt": "2024-01-11T14:24:12.756Z",
+  "versionId": "43c23e33-2e8c-43b5-910a-9a7f94652523"
 }
