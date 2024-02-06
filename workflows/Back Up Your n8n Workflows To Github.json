@@ -177,7 +177,9 @@
   },
   "createdAt": "2024-01-09T16:53:27.332Z",
   "id": "mkhSV42x8XxPCrpx",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Back Up Your n8n Workflows To Github",
   "nodes": [
     {
@@ -516,8 +518,21 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-02-06T08:44:23.068Z",
+      "updatedAt": "2024-02-06T08:44:23.068Z",
+      "id": "yDhe3IP5molQp1N0",
+      "name": "Github"
+    },
+    {
+      "createdAt": "2024-02-06T08:44:25.346Z",
+      "updatedAt": "2024-02-06T08:44:25.346Z",
+      "id": "56KC6epIDz8kqomg",
+      "name": "n8n"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-10T08:47:17.842Z",
-  "versionId": "b739cd1f-72cd-4793-94a8-c76cdad45ea7"
+  "updatedAt": "2024-02-06T08:44:28.233Z",
+  "versionId": "0cdb9fa0-22df-44b9-8a7d-8905937398bb"
 }
