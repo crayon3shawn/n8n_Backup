@@ -65,11 +65,11 @@
             },
             {
               "name": "createdAt",
-              "value": "2022-01-01T12:00:00.000Z"
+              "value": "2022-01-01"
             },
             {
               "name": "updatedAt",
-              "value": "2022-01-01T12:00:00.000Z"
+              "value": "={{$now}}"
             }
           ]
         },
@@ -127,6 +127,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-06T08:44:05.135Z",
-  "versionId": "8d2855c4-77f5-446a-9692-3ab21e6096c2"
+  "updatedAt": "2024-02-06T09:15:45.720Z",
+  "versionId": "ebe59503-9451-42dd-ad42-ed27fc2ab2aa"
 }
