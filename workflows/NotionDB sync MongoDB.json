@@ -1,0 +1,234 @@
+{
+  "active": false,
+  "connections": {
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion Trigger": {
+      "main": [
+        [
+          {
+            "node": "Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-06T09:50:36.748Z",
+  "id": "qe64zscaurWXEqs1",
+  "meta": {
+    "templateId": "503",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "NotionDB sync MongoDB",
+  "nodes": [
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $('Notion').item.json.properties.Title.title[0].text.content }}"
+            },
+            {
+              "name": "content"
+            },
+            {
+              "name": "coverImageUrl",
+              "value": "={{ $('Notion').item.json.properties.coverImageUrl.url }}"
+            },
+            {
+              "name": "slug",
+              "value": "={{ $json.message.content }}"
+            },
+            {
+              "name": "createdAt",
+              "value": "={{ $('Notion').item.json.properties.createdAt.rich_text[0].text.content }}"
+            },
+            {
+              "name": "updatedAt",
+              "value": "={{ $('Notion').item.json.properties.updatedAt.last_edited_time }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1240,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "9084813d-6df2-4fff-a96f-6ce0a0c8fe15",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "findOneAndUpdate",
+        "collection": "posts",
+        "fields": "title, content,coverImageUrl,slug,createdAt,updatedAt",
+        "options": {}
+      },
+      "name": "MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "position": [
+        1440,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "a959b63d-3ea6-451f-91b2-260ab1378e64",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "BkJFpRtx9PtQhhLz",
+          "name": "MongoDB account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "event": "pagedUpdatedInDatabase",
+        "databaseId": {
+          "__rl": true,
+          "value": "3b9f32e3-7cf7-4c50-8a26-616bf57f42ea",
+          "mode": "list",
+          "cachedResultName": "Blog Article",
+          "cachedResultUrl": "https://www.notion.so/3b9f32e37cf74c508a26616bf57f42ea"
+        },
+        "simple": false
+      },
+      "id": "cf4c7fbf-2a9c-468a-99ee-c31f07187e11",
+      "name": "Notion Trigger",
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        240
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "qpSlsZ5IhCEyIf3E",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "3b9f32e3-7cf7-4c50-8a26-616bf57f42ea",
+          "mode": "list",
+          "cachedResultName": "Blog Article",
+          "cachedResultUrl": "https://www.notion.so/3b9f32e37cf74c508a26616bf57f42ea"
+        },
+        "returnAll": true,
+        "simple": false,
+        "options": {}
+      },
+      "id": "74513715-f50e-4797-a019-1c5015b382ce",
+      "name": "Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        240
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "qpSlsZ5IhCEyIf3E",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "prompt": {
+          "messages": [
+            {
+              "role": "assistant",
+              "content": "=Translate \"{{ $json.properties.Title.title[0].text.content }}\" into English and make it like a slug.  [object DragEvent]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "21f41a7f-9c5a-4f13-90b3-778a78a3f17f",
+      "name": "OpenAI",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        240
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "qo3dlBvVH2dcsTQf",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-02-06T08:40:30.167Z",
+      "updatedAt": "2024-02-06T08:40:30.167Z",
+      "id": "AW0pNphPusIfK4GP",
+      "name": "Blog"
+    },
+    {
+      "createdAt": "2024-02-06T08:40:36.532Z",
+      "updatedAt": "2024-02-06T08:40:36.532Z",
+      "id": "Bxj0JLoTvQQA0wpG",
+      "name": "MongoDB"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-02-06T14:33:46.164Z",
+  "versionId": "ac3cadc1-c81a-4e9d-953b-4777841f5cce"
+}
