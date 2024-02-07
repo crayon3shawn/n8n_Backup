@@ -30,6 +30,11 @@
             "node": "OpenAI",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Medium",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -63,7 +68,8 @@
               "value": "={{ $('Notion').item.json.properties.Title.title[0].text.content }}"
             },
             {
-              "name": "content"
+              "name": "content",
+              "value": "="
             },
             {
               "name": "coverImageUrl",
@@ -88,7 +94,7 @@
       "name": "Set",
       "type": "n8n-nodes-base.set",
       "position": [
-        1240,
+        1680,
         240
       ],
       "typeVersion": 1,
@@ -100,12 +106,13 @@
         "operation": "findOneAndUpdate",
         "collection": "posts",
         "fields": "title, content,coverImageUrl,slug,createdAt,updatedAt",
+        "upsert": true,
         "options": {}
       },
       "name": "MongoDB",
       "type": "n8n-nodes-base.mongoDb",
       "position": [
-        1440,
+        1880,
         240
       ],
       "typeVersion": 1,
@@ -134,15 +141,14 @@
           "mode": "list",
           "cachedResultName": "Blog Article",
           "cachedResultUrl": "https://www.notion.so/3b9f32e37cf74c508a26616bf57f42ea"
-        },
-        "simple": false
+        }
       },
       "id": "cf4c7fbf-2a9c-468a-99ee-c31f07187e11",
       "name": "Notion Trigger",
       "type": "n8n-nodes-base.notionTrigger",
       "typeVersion": 1,
       "position": [
-        580,
+        1040,
         240
       ],
       "credentials": {
@@ -172,7 +178,7 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.1,
       "position": [
-        800,
+        1260,
         240
       ],
       "credentials": {
@@ -189,7 +195,7 @@
           "messages": [
             {
               "role": "assistant",
-              "content": "=Translate \"{{ $json.properties.Title.title[0].text.content }}\" into English and make it like a slug.  [object DragEvent]"
+              "content": "=Translate \"{{ $('Notion').item.json.properties.Title.title[0].text.content }}\" into English and make it like a slug.   "
             }
           ]
         },
@@ -200,13 +206,53 @@
       "type": "n8n-nodes-base.openAi",
       "typeVersion": 1.1,
       "position": [
-        1020,
+        1460,
         240
       ],
       "credentials": {
         "openAiApi": {
           "id": "qo3dlBvVH2dcsTQf",
           "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "315e2c23-3196-4bfb-8618-829dc5a003b8",
+      "name": "OpenAI1",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.1,
+      "position": [
+        1500,
+        420
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "qo3dlBvVH2dcsTQf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "publication",
+        "operation": "getAll",
+        "returnAll": true
+      },
+      "id": "41bec7dd-ec57-4a91-987e-12cb1d4a6bf9",
+      "name": "Medium",
+      "type": "n8n-nodes-base.medium",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        480
+      ],
+      "credentials": {
+        "mediumApi": {
+          "id": "CpRvKanAsJTOBvgF",
+          "name": "Medium account"
         }
       }
     }
@@ -229,6 +275,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-06T14:33:46.164Z",
-  "versionId": "ac3cadc1-c81a-4e9d-953b-4777841f5cce"
+  "updatedAt": "2024-02-07T01:32:43.373Z",
+  "versionId": "23a58356-09ef-4479-8a89-edff524d628e"
 }
