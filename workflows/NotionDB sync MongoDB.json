@@ -30,11 +30,6 @@
             "node": "OpenAI",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Medium",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -215,46 +210,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "315e2c23-3196-4bfb-8618-829dc5a003b8",
-      "name": "OpenAI1",
-      "type": "n8n-nodes-base.openAi",
-      "typeVersion": 1.1,
-      "position": [
-        1500,
-        420
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "qo3dlBvVH2dcsTQf",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "publication",
-        "operation": "getAll",
-        "returnAll": true
-      },
-      "id": "41bec7dd-ec57-4a91-987e-12cb1d4a6bf9",
-      "name": "Medium",
-      "type": "n8n-nodes-base.medium",
-      "typeVersion": 1,
-      "position": [
-        1780,
-        480
-      ],
-      "credentials": {
-        "mediumApi": {
-          "id": "CpRvKanAsJTOBvgF",
-          "name": "Medium account"
-        }
-      }
     }
   ],
   "pinData": {},
@@ -275,6 +230,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-02-07T01:32:43.373Z",
-  "versionId": "23a58356-09ef-4479-8a89-edff524d628e"
+  "updatedAt": "2024-02-11T13:54:00.159Z",
+  "versionId": "3dfc2b10-7575-4717-9300-bbef6ed031fd"
 }
