@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Set": {
       "main": [
@@ -27,17 +27,6 @@
       "main": [
         [
           {
-            "node": "OpenAI",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI": {
-      "main": [
-        [
-          {
             "node": "Set",
             "type": "main",
             "index": 0
@@ -59,28 +48,28 @@
         "values": {
           "string": [
             {
-              "name": "title",
-              "value": "={{ $('Notion').item.json.properties.Title.title[0].text.content }}"
+              "name": "notion_id",
+              "value": "={{ $('Notion').item.json.id }}"
             },
             {
-              "name": "content",
-              "value": "="
+              "name": "title",
+              "value": "={{ $json.name }}"
             },
             {
               "name": "coverImageUrl",
-              "value": "={{ $('Notion').item.json.properties.coverImageUrl.url }}"
+              "value": "={{ $json.property_cover_image_url }}"
             },
             {
               "name": "slug",
-              "value": "={{ $json.message.content }}"
+              "value": "={{ $json.property_slug }}"
             },
             {
               "name": "createdAt",
-              "value": "={{ $('Notion').item.json.properties.createdAt.rich_text[0].text.content }}"
+              "value": "={{ $json.property_created_at }}"
             },
             {
               "name": "updatedAt",
-              "value": "={{ $('Notion').item.json.properties.updatedAt.last_edited_time }}"
+              "value": "={{ $json.property_updated_at }}"
             }
           ]
         },
@@ -100,6 +89,7 @@
       "parameters": {
         "operation": "findOneAndUpdate",
         "collection": "posts",
+        "updateKey": "notion_id",
         "fields": "title, content,coverImageUrl,slug,createdAt,updatedAt",
         "upsert": true,
         "options": {}
@@ -143,7 +133,7 @@
       "type": "n8n-nodes-base.notionTrigger",
       "typeVersion": 1,
       "position": [
-        1040,
+        1240,
         240
       ],
       "credentials": {
@@ -165,7 +155,6 @@
           "cachedResultUrl": "https://www.notion.so/3b9f32e37cf74c508a26616bf57f42ea"
         },
         "returnAll": true,
-        "simple": false,
         "options": {}
       },
       "id": "74513715-f50e-4797-a019-1c5015b382ce",
@@ -173,7 +162,7 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.1,
       "position": [
-        1260,
+        1460,
         240
       ],
       "credentials": {
@@ -182,39 +171,15 @@
           "name": "Notion account"
         }
       }
-    },
-    {
-      "parameters": {
-        "resource": "chat",
-        "prompt": {
-          "messages": [
-            {
-              "role": "assistant",
-              "content": "=Translate \"{{ $('Notion').item.json.properties.Title.title[0].text.content }}\" into English and make it like a slug.   "
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "21f41a7f-9c5a-4f13-90b3-778a78a3f17f",
-      "name": "OpenAI",
-      "type": "n8n-nodes-base.openAi",
-      "typeVersion": 1.1,
-      "position": [
-        1460,
-        240
-      ],
-      "credentials": {
-        "openAiApi": {
-          "id": "qo3dlBvVH2dcsTQf",
-          "name": "OpenAi account"
-        }
-      }
     }
   ],
   "pinData": {},
   "settings": {},
-  "staticData": null,
+  "staticData": {
+    "node:Notion Trigger": {
+      "lastTimeChecked": "2024-02-13T11:27:00.000Z"
+    }
+  },
   "tags": [
     {
       "createdAt": "2024-02-06T08:40:30.167Z",
@@ -229,7 +194,7 @@
       "name": "MongoDB"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2024-02-11T13:54:00.159Z",
-  "versionId": "3dfc2b10-7575-4717-9300-bbef6ed031fd"
+  "triggerCount": 1,
+  "updatedAt": "2024-02-13T11:27:55.083Z",
+  "versionId": "536f61ff-df10-400a-8559-0b57900eafab"
 }
