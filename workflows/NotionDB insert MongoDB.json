@@ -175,7 +175,7 @@
   "settings": {},
   "staticData": {
     "node:Notion Trigger": {
-      "lastTimeChecked": "2024-03-06T21:17:00.000Z"
+      "lastTimeChecked": "2024-03-07T21:17:00.000Z"
     }
   },
   "tags": [
@@ -193,6 +193,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-03-06T21:17:31.552Z",
+  "updatedAt": "2024-03-07T21:17:27.766Z",
   "versionId": "47926de3-cf27-44a0-aeef-baca82a644a5"
 }
